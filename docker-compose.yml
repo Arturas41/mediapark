@@ -2,7 +2,7 @@ version: '3.8'
 services:
 
   # PHP7.4 service
-  app:
+  mediapark-app:
     build:
       context: .
       dockerfile: Docker/AppDockerfile
@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     tty: true
     environment:
-      SERVICE_NAME: app
+      SERVICE_NAME: mediapark-app
     working_dir: /var/www
     volumes:
       - ./:/var/www
@@ -19,9 +19,21 @@ services:
     networks:
       - mediapark-app-network
 
+  #Nginx Service
+  mediapark-webserver:
+    image: nginx:alpine
+    container_name: mediapark-webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./Docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - mediapark-app-network
+
 networks:
   mediapark-app-network:
     driver: bridge
-
-
-  
