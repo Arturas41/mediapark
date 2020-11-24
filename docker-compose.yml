@@ -34,6 +34,29 @@ services:
     networks:
       - mediapark-app-network
 
+  #MySQL Service
+  mediapark-db:
+    image: mysql
+    container_name: mediapark-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: mediapark
+      MYSQL_ROOT_PASSWORD: WLZPnCuwkWmlwRui
+      SERVICE_NAME: mysql
+    volumes:
+      - mediapark-datavolume:/var/lib/mysql
+      - ./Docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - mediapark-app-network
+
 networks:
   mediapark-app-network:
     driver: bridge
+
+#Docker Volumes(/var/lib/docker/volumes folder)
+volumes:
+  mediapark-datavolume:
+    driver: local
