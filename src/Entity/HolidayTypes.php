@@ -32,6 +32,11 @@ class HolidayTypes
      */
     private $ShortDescription;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=SupportedCountries::class, inversedBy="holidayTypes")
+     */
+    private $supportedCountries;
+
     public function getCodeName(): ?string
     {
         return $this->CodeName;
@@ -64,6 +69,18 @@ class HolidayTypes
     public function setShortDescription(string $ShortDescription): self
     {
         $this->ShortDescription = $ShortDescription;
+
+        return $this;
+    }
+
+    public function getSupportedCountries(): ?SupportedCountries
+    {
+        return $this->supportedCountries;
+    }
+
+    public function setSupportedCountries(?SupportedCountries $supportedCountries): self
+    {
+        $this->supportedCountries = $supportedCountries;
 
         return $this;
     }

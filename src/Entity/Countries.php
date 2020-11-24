@@ -27,6 +27,11 @@ class Countries
      */
     private $code;
 
+    /**
+     * @ORM\OneToOne(targetEntity=SupportedCountries::class, mappedBy="country", cascade={"persist", "remove"})
+     */
+    private $supportedCountries;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,23 @@ class Countries
     public function setCode(string $code): self
     {
         $this->code = $code;
+
+        return $this;
+    }
+
+    public function getSupportedCountries(): ?SupportedCountries
+    {
+        return $this->supportedCountries;
+    }
+
+    public function setSupportedCountries(SupportedCountries $supportedCountries): self
+    {
+        $this->supportedCountries = $supportedCountries;
+
+        // set the owning side of the relation if necessary
+        if ($supportedCountries->getCountry() !== $this) {
+            $supportedCountries->setCountry($this);
+        }
 
         return $this;
     }

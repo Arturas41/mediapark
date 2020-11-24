@@ -30,6 +30,11 @@ class HolidayApis
      */
     private $url;
 
+    /**
+     * @ORM\OneToOne(targetEntity=SupportedCountries::class, mappedBy="holidayApi", cascade={"persist", "remove"})
+     */
+    private $supportedCountries;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,6 +60,23 @@ class HolidayApis
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getSupportedCountries(): ?SupportedCountries
+    {
+        return $this->supportedCountries;
+    }
+
+    public function setSupportedCountries(SupportedCountries $supportedCountries): self
+    {
+        $this->supportedCountries = $supportedCountries;
+
+        // set the owning side of the relation if necessary
+        if ($supportedCountries->getHolidayApi() !== $this) {
+            $supportedCountries->setHolidayApi($this);
+        }
 
         return $this;
     }
