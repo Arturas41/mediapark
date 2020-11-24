@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/HolidayTypeFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/HolidayTypes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/HolidayTypes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,10 +152,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel-app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/DataFixtures" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/DataFixtures" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
     </key>
@@ -167,7 +172,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606223632947</updated>
       <workItem from="1606223633991" duration="857000" />
-      <workItem from="1606228103791" duration="13423000" />
+      <workItem from="1606228103791" duration="14386000" />
     </task>
     <servers />
   </component>

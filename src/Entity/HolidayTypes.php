@@ -27,6 +27,11 @@ class HolidayTypes
      */
     private $Description;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ShortDescription;
+
     public function getCodeName(): ?string
     {
         return $this->CodeName;
@@ -47,6 +52,18 @@ class HolidayTypes
     public function setDescription(?string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->ShortDescription;
+    }
+
+    public function setShortDescription(string $ShortDescription): self
+    {
+        $this->ShortDescription = $ShortDescription;
 
         return $this;
     }
