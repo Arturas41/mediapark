@@ -20,7 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/main/_tests.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/main/layout.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,6 +157,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel-app" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -163,7 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606223632947</updated>
       <workItem from="1606223633991" duration="857000" />
-      <workItem from="1606228103791" duration="10938000" />
+      <workItem from="1606228103791" duration="11704000" />
     </task>
     <servers />
   </component>

@@ -1,19 +1,22 @@
 <?php
 
 namespace App\Controller;
+
 use Symfony\Component\Routing\Annotation\Route;
-
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class MainController
+class MainController extends AbstractController
 {
      /**
-      * @Route("/", name="blog_list")
+      * @Route("/", name="main_show")
       */
     public function show(): Response
     {
-        return new Response(
-            '<html><body>MainController show</body></html>'
-        );
+        $tests = ['test1', 'test2', 'test3'];
+
+        return $this->render('main/layout.html.twig', [
+            'tests' => $tests
+        ]);
     }
 }
