@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,10 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Command/FetchSupportedCountriesCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Command/FetchSupportedCountriesCommandTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Countries.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Countries.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/HolidayApis.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/HolidayApis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/HolidayTypes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/HolidayTypes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +39,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -154,6 +163,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/DataFixtures" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -165,6 +175,9 @@
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$PROJECT_DIR$/../.subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="" />
@@ -173,7 +186,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606223632947</updated>
       <workItem from="1606223633991" duration="857000" />
-      <workItem from="1606228103791" duration="16452000" />
+      <workItem from="1606228103791" duration="20871000" />
     </task>
     <servers />
   </component>
@@ -197,10 +210,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="718" y="480" width="576" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1606227362412" />
-    <state x="835" y="152" width="550" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606248397413">
+    <state x="835" y="152" width="550" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606250810545">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="835" y="152" width="550" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606248397413" />
+    <state x="835" y="152" width="550" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606250810545" />
     <state x="726" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606237903961">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -209,14 +222,18 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="707" y="390" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1606223644672" />
-    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog" timestamp="1606237425262">
+    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog" timestamp="1606252622974">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606237425262" />
-    <state x="1050" y="157" width="618" height="761" key="find.popup" timestamp="1606248528675">
+    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606252622974" />
+    <state x="654" y="134" key="SettingsEditor" timestamp="1606251858245">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="1050" y="157" width="618" height="761" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1606248528675" />
+    <state x="654" y="134" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1606251858245" />
+    <state x="1050" y="157" width="618" height="761" key="find.popup" timestamp="1606251418468">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="1050" y="157" width="618" height="761" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1606251418468" />
     <state x="971" y="237" key="run.anything.popup" timestamp="1606237439100">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
