@@ -8,10 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Question\ChoiceQuestion;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Question\Question;
 
 class FetchSupportedCountriesCommand extends Command
 {
@@ -31,9 +28,6 @@ class FetchSupportedCountriesCommand extends Command
         $this
             ->setDescription('Fetch supported countries from holidays API and fill it to database')
             ->setHelp('Fetch supported countries from holidays API and fill it to database');
-
-//        $this
-//            ->addArgument('name', InputArgument::REQUIRED, 'Select holidays API name');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
