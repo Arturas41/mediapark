@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/HolidayTypeFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/HolidayTypes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/HolidayTypes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +170,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606223632947</updated>
       <workItem from="1606223633991" duration="857000" />
-      <workItem from="1606228103791" duration="14386000" />
+      <workItem from="1606228103791" duration="14670000" />
     </task>
     <servers />
   </component>
