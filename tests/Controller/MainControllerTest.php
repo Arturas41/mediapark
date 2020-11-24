@@ -13,5 +13,7 @@ class MainControllerTest extends WebTestCase
         $client->request('GET', '/');
 
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
+
+        $this->assertResponseRedirects('/login');
     }
 }
