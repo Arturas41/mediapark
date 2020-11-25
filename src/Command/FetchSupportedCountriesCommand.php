@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\HolidayApis;
+use App\Service\Holiday\KayaposoftApi;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -17,9 +18,12 @@ class FetchSupportedCountriesCommand extends Command
 
     protected EntityManager $em;
 
-    public function __construct(EntityManagerInterface $em)
+    private KayaposoftApi $kayaposoftApi;
+
+    public function __construct(EntityManagerInterface $em, KayaposoftApi $kayaposoftApi)
     {
         $this->em = $em;
+        $this->kayaposoftApi = $kayaposoftApi;
         parent::__construct();
     }
 
@@ -37,7 +41,7 @@ class FetchSupportedCountriesCommand extends Command
         $holidayApis = $holidayApisRepository->findAll();
 
         if(empty($holidayApis)){
-            throw new \LogicException('no holiday Apis has been found');
+            throw new \LogicException('No holiday Apis has been found');
         }
 
         $helper = $this->getHelper('question');
@@ -45,13 +49,17 @@ class FetchSupportedCountriesCommand extends Command
         $names = array_map(function($holidayApi) { return $holidayApi->getName(); }, $holidayApis);
 
         $question = new ChoiceQuestion(
-            'Select holidays API',
+            'Select holidays API:',
             $names
         );
 
-        $bundleName = $helper->ask($input, $output, $question);
+        $holidayApi = $helper->ask($input, $output, $question);
 
-        $output->writeln($bundleName);
+        $output->writeln($holidayApi);
+
+        $supportedCountries = $this->kayaposoftApi->getSupportedCountries();
+
+        print_r($supportedCountries);
 
         return Command::SUCCESS;
 
