@@ -23,9 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Service/Holiday/KayaposoftApi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/HttpClientService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/HttpClientServiceInterface.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/FetchSupportedCountriesCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/FetchSupportedCountriesCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Holiday/KayaposoftApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Holiday/KayaposoftApi.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,12 +162,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/DataFixtures" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Service" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Service" />
       <recent name="$PROJECT_DIR$/src/DataFixtures" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -185,7 +187,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606223632947</updated>
       <workItem from="1606223633991" duration="857000" />
-      <workItem from="1606228103791" duration="26088000" />
+      <workItem from="1606228103791" duration="31079000" />
     </task>
     <servers />
   </component>
@@ -221,18 +223,18 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="707" y="390" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1606223644672" />
-    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog" timestamp="1606298651465">
+    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog" timestamp="1606315973308">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606298651465" />
+    <state x="987" y="503" width="399" height="149" key="NewPhpFileDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606315973308" />
     <state x="654" y="134" key="SettingsEditor" timestamp="1606251858245">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="654" y="134" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1606251858245" />
-    <state x="1050" y="157" width="782" height="761" key="find.popup" timestamp="1606315569220">
+    <state x="1050" y="157" width="850" height="761" key="find.popup" timestamp="1606320245002">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="1050" y="157" width="782" height="761" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1606315569220" />
+    <state x="1050" y="157" width="850" height="761" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1606320245002" />
     <state x="971" y="237" key="run.anything.popup" timestamp="1606237439100">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
