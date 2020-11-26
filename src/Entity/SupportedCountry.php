@@ -39,11 +39,6 @@ class SupportedCountry
      */
     private $country;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=HolidayApi::class, inversedBy="supportedCountries")
-     */
-    private $holidayApi;
-
     public function __construct()
     {
         $this->holidayTypes = new ArrayCollection();
@@ -116,18 +111,6 @@ class SupportedCountry
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
-
-        return $this;
-    }
-
-    public function getHolidayApi(): ?HolidayApi
-    {
-        return $this->holidayApi;
-    }
-
-    public function setHolidayApi(?HolidayApi $holidayApi): self
-    {
-        $this->holidayApi = $holidayApi;
 
         return $this;
     }

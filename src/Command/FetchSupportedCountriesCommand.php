@@ -3,7 +3,6 @@
 namespace App\Command;
 
 use App\Entity\Country;
-use App\Entity\HolidayApi;
 use App\Entity\HolidayType;
 use App\Entity\SupportedCountry;
 use App\Service\Holiday\KayaposoftApi;
@@ -43,40 +42,14 @@ class FetchSupportedCountriesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $holidayApiRepository = $this->em->getRepository(HolidayApi::class);
-        $holidayApis = $holidayApiRepository->findAll();
+        $supportedCountryArr = $this->kayaposoftApi->getSupportedCountries();
 
-        if (empty($holidayApis)) {
-            throw new \LogicException('No holiday Apis has been found');
-        }
-
-        $helper = $this->getHelper('question');
-
-        $holidayApisNames = array_map(function ($holidayApi) {
-            return $holidayApi->getName();
-        }, $holidayApis);
-
-        $question = new ChoiceQuestion(
-            'Select holidays API:',
-            $holidayApisNames
-        );
-
-        $holidayApiInput = $helper->ask($input, $output, $question);
-
-        //todo modify data for each API
-        if ($holidayApiInput === "kayaposoft") {
-            $holidayApiEntity = $holidayApiRepository->findOneBy(['name' => 'kayaposoft']);
-            $supportedCountryArr = $this->kayaposoftApi->getSupportedCountries();
-        } else {
-            $output->writeln("selected API is not supported");
-            return Command::FAILURE;
-        }
 
         //todo too many DB requests
         foreach ($supportedCountryArr as $key => $value) {
 
             $countryEntity = $this->saveOrUpdateCountry($value);
-            $supportedCountryEntity = $this->saveOrUpdateSupportedCountry($value, $countryEntity, $holidayApiEntity);
+            $supportedCountryEntity = $this->saveOrUpdateSupportedCountry($value, $countryEntity);
             $this->saveOrUpdateHolidayTypes($value, $supportedCountryEntity);
 
         }
@@ -119,24 +92,21 @@ class FetchSupportedCountriesCommand extends Command
         return $country;
     }
 
-    private function saveOrUpdateSupportedCountry(array $data, Country $country, HolidayApi $holidayApi): SupportedCountry
+    private function saveOrUpdateSupportedCountry(array $data, Country $country): SupportedCountry
     {
         $supportedCountryRepository = $this->em->getRepository(SupportedCountry::class);
 
         $supportedCountry = $supportedCountryRepository->findOneBy(
             [
-                'country' => $country->getId(),
-                'holidayApi' => $holidayApi->getId()
+                'country' => $country->getId()
             ]
         );
 
         if (empty($supportedCountry)) {
             $supportedCountry = new SupportedCountry();
             $supportedCountry->setCountry($country);
-            $supportedCountry->setHolidayApi($holidayApi);
         }
 
-        //date start
         $fromDate = new \DateTime();
         $fromDate->setDate(
             $data['fromDate']['year'],
