@@ -38,28 +38,33 @@ class FetchSupportedCountriesCommand extends Command
     {
 
         $holidayApisRepository = $this->em->getRepository(HolidayApis::class);
-        $holidayApis = $holidayApisRepository->findAll();
+        $holidayApisNames = $holidayApisRepository->findAll();
 
-        if(empty($holidayApis)){
+        if (empty($holidayApisNames)) {
             throw new \LogicException('No holiday Apis has been found');
         }
 
         $helper = $this->getHelper('question');
 
-        $names = array_map(function($holidayApi) { return $holidayApi->getName(); }, $holidayApis);
+        $holidayApisNames = array_map(function ($holidayApi) {
+            return $holidayApi->getName();
+        }, $holidayApisNames);
 
         $question = new ChoiceQuestion(
             'Select holidays API:',
-            $names
+            $holidayApisNames
         );
 
         $holidayApi = $helper->ask($input, $output, $question);
 
-        $output->writeln($holidayApi);
+        if ($holidayApi === "kayaposoft") {
+            $supportedCountries = $this->kayaposoftApi->getSupportedCountries();
+        } else {
+            $output->writeln("selected API is not supported");
+            return Command::FAILURE;
+        }
 
-        $supportedCountries = $this->kayaposoftApi->getSupportedCountries();
-
-        print_r($supportedCountries);
+//        $output->writeln($supportedCountries);
 
         return Command::SUCCESS;
 

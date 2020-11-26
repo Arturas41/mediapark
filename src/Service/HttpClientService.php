@@ -38,7 +38,7 @@ abstract class HttpClientService implements HttpClientServiceInterface
         } catch (TransportExceptionInterface $e) {
         }
 
-        if($e !== NULL){
+        if ($e !== NULL) {
             $this->logger->error($e->getMessage());
             throw new Exception($e);
         }
@@ -47,7 +47,7 @@ abstract class HttpClientService implements HttpClientServiceInterface
 
     }
 
-    public function getArrayContent(string $method, string $url) : array
+    public function getArrayContent(string $method, string $url): array
     {
 
         $response = $this->getResponse($method, $url);
@@ -63,7 +63,7 @@ abstract class HttpClientService implements HttpClientServiceInterface
         } catch (TransportExceptionInterface $e) {
         }
 
-        if($e !== NULL){
+        if ($e !== NULL) {
             $this->logger->error($e->getMessage());
             throw new Exception($e);
         }

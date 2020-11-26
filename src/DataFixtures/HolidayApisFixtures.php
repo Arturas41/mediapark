@@ -16,6 +16,12 @@ class HolidayApisFixtures extends Fixture
         $holidayApis->setUrl('https://kayaposoft.com/enrico/json/v2.0/');
         $manager->persist($holidayApis);
 
+        $holidayApis = new HolidayApis();
+
+        $holidayApis->setName('unusable');
+        $holidayApis->setUrl('https://unusable.test123');
+        $manager->persist($holidayApis);
+
         $manager->flush();
     }
 }
