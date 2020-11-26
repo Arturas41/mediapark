@@ -4,19 +4,19 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\HolidayApis;
+use App\Entity\HolidayApi;
 
 class HolidayApisFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $holidayApis = new HolidayApis();
+        $holidayApis = new HolidayApi();
 
         $holidayApis->setName('kayaposoft');
         $holidayApis->setUrl('https://kayaposoft.com/enrico/json/v2.0/');
         $manager->persist($holidayApis);
 
-        $holidayApis = new HolidayApis();
+        $holidayApis = new HolidayApi();
 
         $holidayApis->setName('unusable');
         $holidayApis->setUrl('https://unusable.test123');
