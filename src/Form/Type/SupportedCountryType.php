@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
@@ -57,6 +58,10 @@ class SupportedCountryType extends AbstractType
 //                $builder->create('country', FormType::class, ['by_reference' => false])
 //                    ->add('name', TextType::class)
 //            )
+
+            ->add('CountryType', CountryType::class, [
+                'mapped' => false,
+            ])
             ->add('country', EntityType::class, [
                 'class' => Country::class,
 //                'choice_label' => 'name',
