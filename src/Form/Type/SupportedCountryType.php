@@ -9,15 +9,23 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\LanguageType;
+use Symfony\Component\Form\Extension\Core\Type\LocaleType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -52,14 +60,62 @@ class SupportedCountryType extends AbstractType
     {
         $allowedCountries = $options['allowed_countries'];
 
+        //todo by_reference
         $builder
 //            ->add('country', TextType::class)
 //            ->add(
 //                $builder->create('country', FormType::class, ['by_reference' => false])
 //                    ->add('name', TextType::class)
 //            )
+//            ->add('LocaleType', LocaleType::class, [
+//                'mapped' => false,
+//            ])
+//            ->add('LanguageType', LanguageType::class, [
+//                'mapped' => false,
+//            ])
+//            ->add('CountryType', CountryType::class, [
+//                'mapped' => false,
+//            ])
+            ->add('holidayType', CollectionType::class, [
+                'mapped' => false,
+                'entry_type' => holidayType::class,
+            ])
+            ->add('RadioType', RadioType::class, [
+                'mapped' => false,
+                'attr' => ['class' => 'tinymce'],
+            ])
+            ->add('FileType', FileType::class,
+            [
+                'mapped' => false,
+            ])
+            ->add('CheckboxType', CheckboxType::class, [
+                'mapped' => false,
+                'label'    => 'Show this entry publicly?',
+                'required' => false,
+            ])
+            ->add('DateIntervalType', DateIntervalType::class, [
+                'mapped' => false,
+                'widget'      => 'integer', // render a text field for each part
+                // 'input'    => 'string',  // if you want the field to return a ISO 8601 string back to you
 
-            ->add('CountryType', CountryType::class, [
+                // customize which text boxes are shown
+                'with_years'  => true,
+                'with_months' => false,
+                'with_days'   => false,
+                'with_hours'  => false,
+            ])
+            ->add('DateType', DateType::class, [
+                'mapped' => false,
+//                'widget' => 'choice',
+                'widget' => 'single_text',
+//                'placeholder' => [
+//                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+//                ]
+//                'format' => 'yyyy-MM-dd',
+                'input' => 'array',
+                'input_format' => 'yyyy-MM-dd'
+            ])
+            ->add('TimezoneType', TimezoneType::class, [
                 'mapped' => false,
             ])
             ->add('country', EntityType::class, [
@@ -74,12 +130,10 @@ class SupportedCountryType extends AbstractType
                 }
 //                'choices' => Country collection,
             ])
-
             ->add('fromDate', DateType::class, [
                 'label' => 'Custom label',
             ])
             ->add('toDate', DateType::class)
-
             ->add('choiceTypeInput', ChoiceType::class, [
                 'mapped' => false,
                 'choices' => [
