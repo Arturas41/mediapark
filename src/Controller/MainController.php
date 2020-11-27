@@ -39,7 +39,7 @@ class MainController extends AbstractController
         $supportedCountry->setFromDate(new \DateTime('tomorrow'));
 
         $form = $this->createForm(SupportedCountryType::class, $supportedCountry, [
-            'is_required_to_date' => true,
+
         ]);
 
         $form->handleRequest($request);
@@ -57,13 +57,6 @@ class MainController extends AbstractController
             return $this->redirectToRoute('task_success');
         }
 
-        //todo (dosnt work) "These “unmapped fields” can be set and accessed in a controller with:"
-        $form->get('choiceType')->setData([
-            'choices' => [
-                'Yes' => true,
-                'No' => false,
-            ],
-        ]);
 
         return $this->render('main/index.html.twig',[
             'form' => $form->createView(),
