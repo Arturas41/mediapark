@@ -24,10 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/SupportedCountryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/SupportedCountryType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/FetchSupportedCountriesCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/FetchSupportedCountriesCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/SupportedCountry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/SupportedCountry.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +177,7 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
-    <configuration>$USER_HOME$/.subversion</configuration>
+    <configuration>$PROJECT_DIR$/../.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -190,7 +188,7 @@
       <updated>1606223632947</updated>
       <workItem from="1606223633991" duration="857000" />
       <workItem from="1606228103791" duration="75339000" />
-      <workItem from="1606501800781" duration="6766000" />
+      <workItem from="1606501800781" duration="8426000" />
     </task>
     <servers />
   </component>

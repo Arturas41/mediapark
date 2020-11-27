@@ -6,9 +6,6 @@ use App\Repository\SupportedCountryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Type;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=SupportedCountryRepository::class)
@@ -23,16 +20,6 @@ class SupportedCountry
     private $id;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $fromDate;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $toDate;
-
-    /**
      * @ORM\OneToMany(targetEntity=HolidayType::class, mappedBy="supportedCountry")
      */
     private $holidayTypes;
@@ -42,53 +29,44 @@ class SupportedCountry
      */
     private $country;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $fromDateYear;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $fromDateMonth;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $fromDateDay;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $toDateYear;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $toDateMonth;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $toDateDay;
+
     public function __construct()
     {
         $this->holidayTypes = new ArrayCollection();
     }
 
-    public static function loadValidatorMetadata(ClassMetadata $metadata): void
-    {
-        $metadata->addPropertyConstraint('fromDate', new NotBlank());
-        $metadata->addPropertyConstraint(
-            'fromDate',
-            new Type(\DateTime::class)
-        );
-
-        $metadata->addPropertyConstraint('toDate', new NotBlank());
-        $metadata->addPropertyConstraint(
-            'toDate',
-            new Type(\DateTime::class)
-        );
-    }
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFromDate(): ?\DateTimeInterface
-    {
-        return $this->fromDate;
-    }
-
-    public function setFromDate(\DateTimeInterface $fromDate): self
-    {
-        $this->fromDate = $fromDate;
-
-        return $this;
-    }
-
-    public function getToDate(): ?\DateTimeInterface
-    {
-        return $this->toDate;
-    }
-
-    public function setToDate(\DateTimeInterface $toDate): self
-    {
-        $this->toDate = $toDate;
-
-        return $this;
     }
 
     /**
@@ -129,6 +107,78 @@ class SupportedCountry
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    public function getFromDateYear(): ?int
+    {
+        return $this->fromDateYear;
+    }
+
+    public function setFromDateYear(int $fromDateYear): self
+    {
+        $this->fromDateYear = $fromDateYear;
+
+        return $this;
+    }
+
+    public function getFromDateMonth(): ?int
+    {
+        return $this->fromDateMonth;
+    }
+
+    public function setFromDateMonth(int $fromDateMonth): self
+    {
+        $this->fromDateMonth = $fromDateMonth;
+
+        return $this;
+    }
+
+    public function getFromDateDay(): ?int
+    {
+        return $this->fromDateDay;
+    }
+
+    public function setFromDateDay(int $fromDateDay): self
+    {
+        $this->fromDateDay = $fromDateDay;
+
+        return $this;
+    }
+
+    public function getToDateYear(): ?int
+    {
+        return $this->toDateYear;
+    }
+
+    public function setToDateYear(int $toDateYear): self
+    {
+        $this->toDateYear = $toDateYear;
+
+        return $this;
+    }
+
+    public function getToDateMonth(): ?int
+    {
+        return $this->toDateMonth;
+    }
+
+    public function setToDateMonth(int $toDateMonth): self
+    {
+        $this->toDateMonth = $toDateMonth;
+
+        return $this;
+    }
+
+    public function getToDateDay(): ?int
+    {
+        return $this->toDateDay;
+    }
+
+    public function setToDateDay(int $toDateDay): self
+    {
+        $this->toDateDay = $toDateDay;
 
         return $this;
     }

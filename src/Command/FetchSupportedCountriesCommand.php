@@ -107,28 +107,13 @@ class FetchSupportedCountriesCommand extends Command
             $supportedCountry->setCountry($country);
         }
 
-        $fromDate = new \DateTime();
-        $fromDate->setDate(
-            $data['fromDate']['year'],
-            $data['fromDate']['month'],
-            $data['fromDate']['day']
-        );
-        $fromDate->setTime(0, 0, 0);
+        $supportedCountry->setFromDateYear($data['fromDate']['year']);
+        $supportedCountry->setFromDateMonth($data['fromDate']['month']);
+        $supportedCountry->setFromDateDay($data['fromDate']['day']);
 
-        $supportedCountry->setFromDate($fromDate);
-
-        //todo change it in data modifier or do validation
-        $toDate = new \DateTime();
-        if ($data['toDate']['year'] >= 9999) {
-            $data['toDate']['year'] = 9999;
-        }
-        $toDate->setDate(
-            $data['toDate']['year'],
-            $data['toDate']['month'],
-            $data['toDate']['day']
-        );
-        $toDate->setTime(0, 0, 0);
-        $supportedCountry->setToDate($toDate);
+        $supportedCountry->setToDateYear($data['toDate']['year']);
+        $supportedCountry->setToDateMonth($data['toDate']['month']);
+        $supportedCountry->setToDateDay($data['toDate']['day']);
 
         try {
             $this->em->persist($supportedCountry);
