@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\LanguageType;
@@ -30,6 +31,8 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
@@ -52,6 +55,13 @@ class SupportedCountryType extends AbstractType
 //            'choice_loader' => ChoiceList::lazy($this, function() {
 //                return $this->em->getRepository(SupportedCountry::class)->findAll();
 //            }),
+            // enable/disable CSRF protection for this form
+            'csrf_protection' => true,
+            // the name of the hidden HTML field that stores the token
+            'csrf_field_name' => '_token',
+            // an arbitrary string used to generate the value of the token
+            // using a different string for each form improves its security
+            'csrf_token_id'   => 'secret',
         ]);
 
     }
@@ -61,6 +71,7 @@ class SupportedCountryType extends AbstractType
         $allowedCountries = $options['allowed_countries'];
 
         //todo by_reference
+        //todo form Data Transformers. for multiple text input seperated by space
         $builder
 //            ->add('country', TextType::class)
 //            ->add(
@@ -80,6 +91,10 @@ class SupportedCountryType extends AbstractType
                 'mapped' => false,
                 'entry_type' => holidayType::class,
             ])
+            ->addEventListener(
+                FormEvents::PRE_SUBMIT,
+                [$this, 'onPreSubmit']
+            )
             ->add('RadioType', RadioType::class, [
                 'mapped' => false,
                 'attr' => ['class' => 'tinymce'],
@@ -221,5 +236,18 @@ class SupportedCountryType extends AbstractType
                 'mapped' => false,
             ])
             ->add('save', SubmitType::class);
+    }
+
+    //todo use it
+    public function onPreSubmit(FormEvent $event): void
+    {
+        $data = $event->getData();
+        $form = $event->getForm();
+
+        if (isset($data)) {
+            $form->add('onPreSetData1', TextType::class, ['mapped' => false,]);
+        } else {
+            $form->add('onPreSetData2', TextType::class, ['mapped' => false,]);
+        }
     }
 }
