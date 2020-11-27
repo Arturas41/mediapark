@@ -23,9 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/CountryHolidaysController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/Type/CountryHolidaysType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/FetchSupportedCountriesCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/FetchSupportedCountriesCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/SupportedCountry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/SupportedCountry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/countryHolidays/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,18 +163,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Form/Type" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Service" />
-      <recent name="$PROJECT_DIR$/src/DataFixtures" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Form/Type" />
       <recent name="$PROJECT_DIR$/templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Form/Type" />
+      <recent name="$PROJECT_DIR$/src/Service" />
+      <recent name="$PROJECT_DIR$/src/DataFixtures" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -188,7 +191,7 @@
       <updated>1606223632947</updated>
       <workItem from="1606223633991" duration="857000" />
       <workItem from="1606228103791" duration="75339000" />
-      <workItem from="1606501800781" duration="8426000" />
+      <workItem from="1606501800781" duration="10254000" />
     </task>
     <servers />
   </component>
@@ -212,10 +215,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="718" y="480" width="576" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1606227362412" />
-    <state x="772" y="226" width="896" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606412923393">
+    <state x="772" y="226" width="896" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606520075870">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="772" y="226" width="896" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606412923393" />
+    <state x="772" y="226" width="896" height="699" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606520075870" />
     <state x="726" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606489655147">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
