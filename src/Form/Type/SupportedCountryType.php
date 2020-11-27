@@ -6,6 +6,7 @@ use App\Entity\Country;
 use App\Entity\SupportedCountry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
@@ -21,6 +22,7 @@ use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
 
 class SupportedCountryType extends AbstractType
 {
@@ -55,7 +57,18 @@ class SupportedCountryType extends AbstractType
 //                $builder->create('country', FormType::class, ['by_reference' => false])
 //                    ->add('name', TextType::class)
 //            )
-
+            ->add('country', EntityType::class, [
+                'class' => Country::class,
+//                'choice_label' => 'name',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'DESC');
+                },
+                'choice_label' => function ($country) {
+                    return $country->getCode();
+                }
+//                'choices' => Country collection,
+            ])
 
             ->add('fromDate', DateType::class, [
                 'label' => 'Custom label',

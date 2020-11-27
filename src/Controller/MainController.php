@@ -29,9 +29,6 @@ class MainController extends AbstractController
      */
     public function show(Request $request): Response
     {
-//        $country = $this->em->getRepository(Country::class)->findOneBy(
-//            ['name' => 'Denmark']
-//        );
 
         $supportedCountry = new SupportedCountry();
 //        $supportedCountry->setCountry($country);
