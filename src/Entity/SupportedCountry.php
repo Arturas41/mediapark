@@ -6,6 +6,9 @@ use App\Repository\SupportedCountryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=SupportedCountryRepository::class)
@@ -42,6 +45,21 @@ class SupportedCountry
     public function __construct()
     {
         $this->holidayTypes = new ArrayCollection();
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata): void
+    {
+        $metadata->addPropertyConstraint('fromDate', new NotBlank());
+        $metadata->addPropertyConstraint(
+            'fromDate',
+            new Type(\DateTime::class)
+        );
+
+        $metadata->addPropertyConstraint('toDate', new NotBlank());
+        $metadata->addPropertyConstraint(
+            'toDate',
+            new Type(\DateTime::class)
+        );
     }
 
     public function getId(): ?int
