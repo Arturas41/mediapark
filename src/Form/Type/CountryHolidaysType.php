@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CountryHolidaysType extends AbstractType
@@ -73,24 +74,18 @@ class CountryHolidaysType extends AbstractType
 //            ])
 //            ->add('Submit', SubmitType::class);
 
+        $formModifier = function (FormInterface $form, SupportedCountry $supportedCountry = null) {
+            $fromDateYear = null === $supportedCountry ? [] : $supportedCountry->getFromDateYear();
+            $form->add('randomInput', TextType::class, [
+            ]);
+        };
+
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
-
-
-                $form = $event->getForm();
-                $supportedCountry = $event->getData();
-
-                $fromDateYear = null === $supportedCountry ? [] : $supportedCountry->getFromDateYear();
-
-//                $form->add('fromDateYear', EntityType::class, [
-//                    'class' => 'App\Entity\SupportedCountry',
-//                    'placeholder' => '',
-//                    'choices' => $fromDateYear,
-//                ]);
-
-                $form->add('randomInput', TextType::class, [
-                ]);
+            function (FormEvent $event) use ($formModifier) {
+                $data = $event->getData();
+                $formModifier($event->getForm(), $data);
+//                $formModifier($event->getForm(), $data->getSupportedCounty());
             }
         );
 
