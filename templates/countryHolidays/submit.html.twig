@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Public holidays list grouped by a month</h1>
+
+    {% for holidaysForYear in holidaysForYearData %}
+        <li>{{ holidaysForYear.name[1].text }}({{ holidaysForYear.name[0].text }})</li>
+    {% endfor %}
+
+
+    <h1>Total amount of a public holidays {{ holidaysForYearData | length }}</h1>
+
+    <h1>status(workday, free day, holiday) for a current day</h1>
+    <li>IsWorkDay -
+        {% if isTodayWorkDay['isWorkDay'] %}
+            YES
+        {% else %}
+            NO
+        {% endif %}
+    </li>
+    <li>IsPublicHoliday -
+        {% if isTodayPublicHoliday['isPublicHoliday'] %}
+            YES
+        {% else %}
+            NO
+        {% endif %}
+    </li>
+
+    <h1>The maximum number of free(free day + holiday) days in a row, which will be in the selected country year</h1>
+
+
+{% endblock %}
+

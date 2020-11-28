@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Country;
+use App\Entity\HolidayType;
 use App\Entity\SupportedCountry;
 use App\Form\Type\CountryHolidaysType;
 use Doctrine\ORM\EntityManager;
@@ -10,25 +12,28 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Service\Holiday\KayaposoftApi;
 
 class CountryHolidaysController extends AbstractController
 {
     protected EntityManager $em;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, KayaposoftApi $kayaposoftApi)
     {
         $this->em = $em;
+        $this->kayaposoftApi = $kayaposoftApi;
     }
 
     /**
-     * @Route("/", name="main_show")
+     * @Route("/", name="index")
      * @param Request $request
      * @return Response
      */
     public function index(Request $request): Response
     {
 
-        if($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
             $data = json_decode($request->getContent(), true);
             $presetData = $this->em->getRepository(SupportedCountry::class)->findOneBy(['id' => $data['country_holidays_country']]);
         } else {
@@ -40,53 +45,45 @@ class CountryHolidaysController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $formData = $form->getData();
-            return $this->redirectToRoute('success');
+            $holidayType = $this->em->getRepository(HolidayType::class)->findOneBy(
+                ['codeName' => 'public_holiday']
+            );
+            return $this->redirect($this->generateUrl('submit',
+                [
+                    'country' => $form->getData()->getCountry()->getId(),
+                    'holidayType' => $holidayType->getId(),
+                    'year' => $form->get("year")->getData(),
+                ])
+            );
         }
 
-        return $this->render('countryHolidays/index.html.twig',[
+        return $this->render('countryHolidays/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-//    /**
-//     * @Route("/", name="main_show")
-//     * @param Request $request
-//     * @return Response
-//     */
-//    public function show(Request $request): Response
-//    {
-//
-//        $supportedCountry = new SupportedCountry();
-////        $supportedCountry->setCountry($country);
-//        $supportedCountry->setToDate(new \DateTime('tomorrow'));
-//        $supportedCountry->setFromDate(new \DateTime('tomorrow'));
-//
-//
-//
-//        $form = $this->createForm(SupportedCountryType::class, $supportedCountry, [
-//
-//        ]);
-//
-//        //todo Dynamic Generation for Submitted Forms
-//        //todo constraints/validation
-//        $form->handleRequest($request);
-//
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            // $form->getData() holds the submitted values
-//            // but, the original `$task` variable has also been updated
-//            $task = $form->getData();
-//
-//            // $entityManager = $this->getDoctrine()->getManager();
-//            // $entityManager->persist($task);
-//            // $entityManager->flush();
-//
-//            return $this->redirectToRoute('task_success');
-//        }
-//
-//
-//        return $this->render('main/index.html.twig',[
-//            'form' => $form->createView(),
-//        ]);
-//    }
+
+    /**
+     * @Route("/submit/{country}/{holidayType}/{year}", name="submit")
+     * @param Request $request
+     * @param Country $country
+     * @param HolidayType $holidayType
+     * @param int $year
+     * @return Response
+     * @ParamConverter("country", class="App\Entity\Country")
+     * @ParamConverter("holidayType", class="App\Entity\HolidayType")
+     */
+    public function submit(Request $request, Country $country, HolidayType $holidayType, int $year): Response
+    {
+        $data['holidaysForYearData'] = $this->kayaposoftApi->getHolidaysForYear($country,$holidayType, $year);
+        $data['isTodayWorkDay'] = $this->kayaposoftApi->isWorkDay($country, new \DateTime());
+        $data['isTodayPublicHoliday'] = $this->kayaposoftApi->isPublicHoliday($country, new \DateTime());
+
+        return $this->render('countryHolidays/submit.html.twig', [
+            'holidaysForYearData' => $data['holidaysForYearData'],
+            'isTodayWorkDay' => $data['isTodayWorkDay'],
+            'isTodayPublicHoliday' => $data['isTodayPublicHoliday'],
+        ]);
+
+    }
+
 }

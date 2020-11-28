@@ -16,14 +16,13 @@ class UserFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user->setEmail('asdf@asdf.asdf');
+        $user->setEmail('user@mediapark.gmail');
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
-            'asdf'
+            'secret'
         ));
         $manager->persist($user);
         $manager->flush();
