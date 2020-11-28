@@ -3,10 +3,12 @@
 {% block content %}
     <h1>Public holidays list grouped by a month</h1>
 
-    {% for holidaysForYear in holidaysForYearData %}
-        <li>{{ holidaysForYear.name[1].text }}({{ holidaysForYear.name[0].text }})</li>
+    {% for month, monthData in holidaysForYearData %}
+        <li>{{ month }}</li>
+        {% for key, value in monthData %}
+            <li>{{ value.name[1].text }}({{ value.name[0].text }})</li>
+        {% endfor %}
     {% endfor %}
-
 
     <h1>Total amount of a public holidays {{ holidaysForYearData | length }}</h1>
 
@@ -25,9 +27,6 @@
             NO
         {% endif %}
     </li>
-
-    <h1>The maximum number of free(free day + holiday) days in a row, which will be in the selected country year</h1>
-
 
 {% endblock %}
 
