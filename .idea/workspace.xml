@@ -23,25 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201124151016.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201124194232.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201124195223.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201124200237.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201124201216.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201124211129.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201126161200.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201126161932.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201126174852.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201126221734.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201126225733.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201127231638.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20201127232244.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CountryHolidaysController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CountryHolidaysController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Country.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Country.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/SupportedCountry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/SupportedCountry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/CountryHolidaysType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/CountryHolidaysType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/countryHolidays/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/countryHolidays/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201128123725.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,6 +188,7 @@
       <workItem from="1606223633991" duration="857000" />
       <workItem from="1606228103791" duration="75339000" />
       <workItem from="1606501800781" duration="24736000" />
+      <workItem from="1606574843844" duration="336000" />
     </task>
     <servers />
   </component>
