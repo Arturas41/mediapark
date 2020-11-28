@@ -2,5 +2,30 @@
 
 {% block content %}
     <h1>Layout</h1>
-    {{ form(form) }}
+
+    {{ form_start(form) }}
+        {{ form_row(form.country) }}
+        {{ form_row(form.randomInput) }}
+    {{ form_end(form) }}
+
+    <script>
+        var $sport = $('#country_holidays_country');
+        $sport.change(function() {
+            var $form = $(this).closest('form');
+            var data = {};
+            data[$sport.attr('id')] = $sport.val();
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : JSON.stringify(data),
+                success: function(html) {
+                    $('#country_holidays_randomInput').replaceWith(
+                        $(html).find('#country_holidays_randomInput')
+                    );
+                }
+            });
+        });
+    </script>
+
 {% endblock %}
+

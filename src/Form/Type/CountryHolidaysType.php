@@ -2,9 +2,11 @@
 
 namespace App\Form\Type;
 
+use App\Entity\Country;
 use App\Entity\SupportedCountry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
@@ -27,12 +29,12 @@ class CountryHolidaysType extends AbstractType
         $this->em = $em;
     }
 
-//    public function configureOptions(OptionsResolver $resolver): void
-//    {
-//        $resolver->setDefaults([
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
 //            'data_class' => SupportedCountry::class,
-//        ]);
-//    }
+        ]);
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -47,36 +49,27 @@ class CountryHolidaysType extends AbstractType
 //        //todo by_reference
 //        //todo form Data Transformers. for multiple text input seperated by space
         $builder
-            ->add('supportedCountry', EntityType::class, [
-                'class' => SupportedCountry::class,
-//                'class' => 'App\Entity\SupportedCountry',
-//                'choice_loader' => new CallbackChoiceLoader(function () {
-//                    return $this->em->getRepository(SupportedCountry::class)->findAll();
-//                }),
-                'choice_value' => function (?SupportedCountry $entity) {
+            ->add('country', EntityType::class, [
+                'class' => Country::class,
+                'choice_loader' => new CallbackChoiceLoader(function () {
+                    return $this->em->getRepository(Country::class)->findAll();
+                }),
+                'choice_value' => function (?Country $entity) {
                     return $entity ? $entity->getId() : '';
                 },
-                'choice_label' => function (?SupportedCountry $supportedCountry) {
-                    return $supportedCountry->getCountry() ? $supportedCountry->getCountry()->getName() : '';
+                'choice_label' => function (?Country $entity) {
+                    return $entity->getName();
                 },
-                'choice_attr' => function (?SupportedCountry $supportedCountry) {
-                    return ['class' => 'supported_country'];
+                'choice_attr' => function (?Country $entity) {
+                    return ['class' => 'country'];
                 },
                 'required' => true,
-                'placeholder' => '',
-            ]);
-//            ->add('range', RangeType::class, [
-//                'mapped' => false,
-//                'attr' => [
-//                    'min' => 5,
-//                    'max' => 50
-//                ]
-//            ])
-//            ->add('Submit', SubmitType::class);
+            ])->add('Submit', SubmitType::class);
 
-        $formModifier = function (FormInterface $form, SupportedCountry $supportedCountry = null) {
-            $fromDateYear = null === $supportedCountry ? [] : $supportedCountry->getFromDateYear();
+        $formModifier = function (FormInterface $form, Country $country = null) {
+            $fromDateYear = null === $country ? [] : $country->getId();
             $form->add('randomInput', TextType::class, [
+                'mapped' => false,
                 'data' => $fromDateYear
             ]);
         };
@@ -84,37 +77,10 @@ class CountryHolidaysType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) use ($formModifier) {
-                $data = $event->getData();
-                $formModifier($event->getForm(), $data);
-//                $formModifier($event->getForm(), $data->getSupportedCounty());
-            }
-        );
-
-        $builder->get('supportedCountry')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier) {
-                // It's important here to fetch $event->getForm()->getData(), as
-                // $event->getData() will get you the client data (that is, the ID)
-                $supportedCountry = $event->getForm()->getData();
-
-                // since we've added the listener to the child, we'll have to pass on
-                // the parent to the callback functions!
-                $formModifier($event->getForm()->getParent(), $supportedCountry);
+                $country = $event->getData()->getCountry();
+                $formModifier($event->getForm(), $country);
             }
         );
 
     }
-
-//    //todo use it
-//    public function onPreSubmit(FormEvent $event): void
-//    {
-//        $data = $event->getData();
-//        $form = $event->getForm();
-//
-//        if (isset($data)) {
-//            $form->add('onPreSetData1', TextType::class, ['mapped' => false,]);
-//        } else {
-//            $form->add('onPreSetData2', TextType::class, ['mapped' => false,]);
-//        }
-//    }
 }

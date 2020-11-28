@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Country;
+use App\Entity\SupportedCountry;
 use App\Form\Type\CountryHolidaysType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,16 +28,24 @@ class CountryHolidaysController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $form = $this->createForm(CountryHolidaysType::class);
+
+        if($request->isXmlHttpRequest()) {
+            $data = json_decode($request->getContent(), true);
+            $presetData = $this->em->getRepository(SupportedCountry::class)->findOneBy(['id' => $data['country_holidays_country']]);
+        } else {
+            $presetData = $this->em->getRepository(SupportedCountry::class)->findOneBy([]);
+        }
+
+        $form = $this->createForm(CountryHolidaysType::class, $presetData);
 
         $form->handleRequest($request);
 
-        //todo Dynamic Generation for Submitted Forms
         //todo constraints/validation
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
             return $this->redirectToRoute('success');
         }
+
         return $this->render('countryHolidays/index.html.twig',[
             'form' => $form->createView(),
         ]);
