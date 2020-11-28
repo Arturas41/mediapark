@@ -26,7 +26,7 @@ class CountryHolidaysController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $form = $this->createForm(CountryHolidaysType::class, null);
+        $form = $this->createForm(CountryHolidaysType::class);
 
         $form->handleRequest($request);
 

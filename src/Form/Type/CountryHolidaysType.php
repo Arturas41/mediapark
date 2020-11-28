@@ -5,11 +5,15 @@ namespace App\Form\Type;
 use App\Entity\SupportedCountry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CountryHolidaysType extends AbstractType
@@ -22,22 +26,32 @@ class CountryHolidaysType extends AbstractType
         $this->em = $em;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
+//    public function configureOptions(OptionsResolver $resolver): void
+//    {
+//        $resolver->setDefaults([
 //            'data_class' => SupportedCountry::class,
-        ]);
-    }
+//        ]);
+//    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        //todo by_reference
-        //todo form Data Transformers. for multiple text input seperated by space
+//        $builder
+//            ->add('supportedCountry', EntityType::class, [
+//                'class'       => SupportedCountry::class,
+////                'class'       => 'App\Entity\SupportedCountry',
+//                'choices' => $this->em->getRepository(SupportedCountry::class)->findAll();
+//            ])
+//        ;
+
+//        //todo by_reference
+//        //todo form Data Transformers. for multiple text input seperated by space
         $builder
-            ->add('supportedCountry', ChoiceType::class, [
-                'choice_loader' => new CallbackChoiceLoader(function () {
-                    return $this->em->getRepository(SupportedCountry::class)->findAll();
-                }),
+            ->add('supportedCountry', EntityType::class, [
+                'class' => SupportedCountry::class,
+//                'class' => 'App\Entity\SupportedCountry',
+//                'choice_loader' => new CallbackChoiceLoader(function () {
+//                    return $this->em->getRepository(SupportedCountry::class)->findAll();
+//                }),
                 'choice_value' => function (?SupportedCountry $entity) {
                     return $entity ? $entity->getId() : '';
                 },
@@ -48,7 +62,8 @@ class CountryHolidaysType extends AbstractType
                     return ['class' => 'supported_country'];
                 },
                 'required' => true,
-            ])
+                'placeholder' => '',
+            ]);
 //            ->add('range', RangeType::class, [
 //                'mapped' => false,
 //                'attr' => [
@@ -56,7 +71,29 @@ class CountryHolidaysType extends AbstractType
 //                    'max' => 50
 //                ]
 //            ])
-            ->add('Submit', SubmitType::class);
+//            ->add('Submit', SubmitType::class);
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) {
+
+
+                $form = $event->getForm();
+                $supportedCountry = $event->getData();
+
+                $fromDateYear = null === $supportedCountry ? [] : $supportedCountry->getFromDateYear();
+
+//                $form->add('fromDateYear', EntityType::class, [
+//                    'class' => 'App\Entity\SupportedCountry',
+//                    'placeholder' => '',
+//                    'choices' => $fromDateYear,
+//                ]);
+
+                $form->add('randomInput', TextType::class, [
+                ]);
+            }
+        );
+
     }
 
 //    //todo use it
