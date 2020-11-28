@@ -77,6 +77,7 @@ class CountryHolidaysType extends AbstractType
         $formModifier = function (FormInterface $form, SupportedCountry $supportedCountry = null) {
             $fromDateYear = null === $supportedCountry ? [] : $supportedCountry->getFromDateYear();
             $form->add('randomInput', TextType::class, [
+                'data' => $fromDateYear
             ]);
         };
 
@@ -86,6 +87,19 @@ class CountryHolidaysType extends AbstractType
                 $data = $event->getData();
                 $formModifier($event->getForm(), $data);
 //                $formModifier($event->getForm(), $data->getSupportedCounty());
+            }
+        );
+
+        $builder->get('supportedCountry')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                // It's important here to fetch $event->getForm()->getData(), as
+                // $event->getData() will get you the client data (that is, the ID)
+                $supportedCountry = $event->getForm()->getData();
+
+                // since we've added the listener to the child, we'll have to pass on
+                // the parent to the callback functions!
+                $formModifier($event->getForm()->getParent(), $supportedCountry);
             }
         );
 
