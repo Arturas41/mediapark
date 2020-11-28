@@ -25,11 +25,6 @@ class SupportedCountry
     private $holidayTypes;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="supportedCountries")
-     */
-    private $country;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $fromDateYear;
@@ -58,6 +53,12 @@ class SupportedCountry
      * @ORM\Column(type="integer")
      */
     private $toDateDay;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Country::class, inversedBy="supportedCountry", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $country;
 
     public function __construct()
     {
@@ -95,18 +96,6 @@ class SupportedCountry
                 $holidayType->setSupportedCountry(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCountry(): ?Country
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?Country $country): self
-    {
-        $this->country = $country;
 
         return $this;
     }
@@ -179,6 +168,18 @@ class SupportedCountry
     public function setToDateDay(int $toDateDay): self
     {
         $this->toDateDay = $toDateDay;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }

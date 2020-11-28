@@ -3,21 +3,17 @@
 namespace App\Form\Type;
 
 use App\Entity\Country;
-use App\Entity\SupportedCountry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CountryHolidaysType extends AbstractType
 {
@@ -29,25 +25,8 @@ class CountryHolidaysType extends AbstractType
         $this->em = $em;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-//            'data_class' => SupportedCountry::class,
-        ]);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-//        $builder
-//            ->add('supportedCountry', EntityType::class, [
-//                'class'       => SupportedCountry::class,
-////                'class'       => 'App\Entity\SupportedCountry',
-//                'choices' => $this->em->getRepository(SupportedCountry::class)->findAll();
-//            ])
-//        ;
-
-//        //todo by_reference
-//        //todo form Data Transformers. for multiple text input seperated by space
         $builder
             ->add('country', EntityType::class, [
                 'class' => Country::class,
@@ -66,11 +45,16 @@ class CountryHolidaysType extends AbstractType
                 'required' => true,
             ])->add('Submit', SubmitType::class);
 
-        $formModifier = function (FormInterface $form, Country $country = null) {
-            $fromDateYear = null === $country ? [] : $country->getId();
-            $form->add('randomInput', TextType::class, [
+        $formModifier = function (FormInterface $form, Country $country) {
+            $fromDateYear = $country->getSupportedCountry()->getFromDateYear();
+            $toDateYear = $country->getSupportedCountry()->getToDateYear();
+            $form->add('year', IntegerType::class, [
                 'mapped' => false,
-                'data' => $fromDateYear
+                'attr' => [
+                    'min' => $fromDateYear,
+                    'max' => $toDateYear
+                ],
+                'required' => true,
             ]);
         };
 

@@ -5,22 +5,25 @@
 
     {{ form_start(form) }}
         {{ form_row(form.country) }}
-        {{ form_row(form.randomInput) }}
+        {{ form_row(form.year) }}
     {{ form_end(form) }}
 
     <script>
-        var $sport = $('#country_holidays_country');
-        $sport.change(function() {
+        var $country = $('#country_holidays_country');
+        $country.change(function() {
             var $form = $(this).closest('form');
             var data = {};
-            data[$sport.attr('id')] = $sport.val();
+            data[$country.attr('id')] = $country.val();
             $.ajax({
                 url : $form.attr('action'),
                 type: $form.attr('method'),
                 data : JSON.stringify(data),
                 success: function(html) {
-                    $('#country_holidays_randomInput').replaceWith(
-                        $(html).find('#country_holidays_randomInput')
+                    $('#country_holidays_year').replaceWith(
+                        $(html).find('#country_holidays_year')
+                    );
+                    $('#country_holidays_year_help').replaceWith(
+                        $(html).find('#country_holidays_year_help')
                     );
                 }
             });

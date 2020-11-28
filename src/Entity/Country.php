@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CountryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,13 +28,12 @@ class Country
     private $code;
 
     /**
-     * @ORM\OneToMany(targetEntity=SupportedCountry::class, mappedBy="country")
+     * @ORM\OneToOne(targetEntity=SupportedCountry::class, mappedBy="country", cascade={"persist", "remove"})
      */
-    private $supportedCountries;
+    private $supportedCountry;
 
     public function __construct()
     {
-        $this->supportedCountries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,31 +65,18 @@ class Country
         return $this;
     }
 
-    /**
-     * @return Collection|SupportedCountry[]
-     */
-    public function getSupportedCountries(): Collection
+    public function getSupportedCountry(): ?SupportedCountry
     {
-        return $this->supportedCountries;
+        return $this->supportedCountry;
     }
 
-    public function addSupportedCountry(SupportedCountry $supportedCountry): self
+    public function setSupportedCountry(SupportedCountry $supportedCountry): self
     {
-        if (!$this->supportedCountries->contains($supportedCountry)) {
-            $this->supportedCountries[] = $supportedCountry;
+        $this->supportedCountry = $supportedCountry;
+
+        // set the owning side of the relation if necessary
+        if ($supportedCountry->getCountry() !== $this) {
             $supportedCountry->setCountry($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSupportedCountry(SupportedCountry $supportedCountry): self
-    {
-        if ($this->supportedCountries->removeElement($supportedCountry)) {
-            // set the owning side to null (unless already changed)
-            if ($supportedCountry->getCountry() === $this) {
-                $supportedCountry->setCountry(null);
-            }
         }
 
         return $this;

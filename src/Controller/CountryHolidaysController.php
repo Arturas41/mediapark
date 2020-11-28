@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Country;
 use App\Entity\SupportedCountry;
 use App\Form\Type\CountryHolidaysType;
 use Doctrine\ORM\EntityManager;
@@ -40,7 +39,6 @@ class CountryHolidaysController extends AbstractController
 
         $form->handleRequest($request);
 
-        //todo constraints/validation
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
             return $this->redirectToRoute('success');
