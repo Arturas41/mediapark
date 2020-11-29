@@ -57,7 +57,7 @@ Prerequistes:
     start 3 containers defined in docker-compose.yml file, create volumes and network between containers
     - $ docker-compose up -d
     
-    create MySql user defined in laravel .env file and give it permissions:
+    create MySql user defined in symfony .env file and give it permissions:
     - $ docker-compose exec db bash
     - root@???:/# mysql -u root -p (password is WLZPnCuwkWmlwRui)
     - mysql> CREATE USER 'mediapark_db_user'@'%' IDENTIFIED BY 'sBVIhJmICniACwua';
