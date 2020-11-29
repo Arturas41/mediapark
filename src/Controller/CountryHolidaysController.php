@@ -74,7 +74,9 @@ class CountryHolidaysController extends AbstractController
      */
     public function submit(Request $request, Country $country, HolidayType $holidayType, int $year): Response
     {
-        $data['holidaysForYearData'] = $this->kayaposoftApi->getHolidaysForYear($country,$holidayType, $year);
+        $request->getRequestUri();
+
+        $data['holidaysForYearData'] = $this->kayaposoftApi->getHolidaysForYear($country, $holidayType, $year);
         $data['holidaysForYearData'] = array_group_by($data['holidaysForYearData'], function ($row) {
             $monthNum  = $row['date']['month'];
             $dateObj   = \DateTime::createFromFormat('!m', $monthNum);
