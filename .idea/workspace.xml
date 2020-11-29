@@ -24,7 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/heroku.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +162,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel-app/README.md" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -193,7 +194,7 @@
       <workItem from="1606223633991" duration="857000" />
       <workItem from="1606228103791" duration="75339000" />
       <workItem from="1606501800781" duration="24736000" />
-      <workItem from="1606574843844" duration="23922000" />
+      <workItem from="1606574843844" duration="29339000" />
     </task>
     <servers />
   </component>
@@ -225,10 +226,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="726" y="310" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1606596207996" />
-    <state x="707" y="390" width="424" height="484" key="FileChooserDialogImpl" timestamp="1606223644672">
+    <state x="707" y="390" width="424" height="484" key="FileChooserDialogImpl" timestamp="1606674915899">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="707" y="390" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1606223644672" />
+    <state x="707" y="390" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1606674915899" />
     <state x="859" y="814" width="399" height="149" key="NewPhpFileDialog" timestamp="1606595328881">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
