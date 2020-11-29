@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="" />
+    <list default="true" id="1b58672f-c186-44bd-a617-3315a2f58595" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -158,13 +160,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/countryHolidays" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/templates/countryHolidays" />
       <recent name="$PROJECT_DIR$/src/Form/Type" />
       <recent name="$PROJECT_DIR$/src/Service" />
@@ -189,7 +192,7 @@
       <workItem from="1606223633991" duration="857000" />
       <workItem from="1606228103791" duration="75339000" />
       <workItem from="1606501800781" duration="24736000" />
-      <workItem from="1606574843844" duration="22690000" />
+      <workItem from="1606574843844" duration="23432000" />
     </task>
     <servers />
   </component>
